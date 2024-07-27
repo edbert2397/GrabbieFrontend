@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:grabbie_fe/FormPage.dart';
-import 'package:grabbie_fe/PromptScreen.dart';
 
 class Place {
   final String name;
@@ -20,12 +19,16 @@ class Place {
   });
 }
 
-class PlacesScreen extends StatefulWidget {
+class PromptScreen extends StatefulWidget {
+  final String searchQuery;
+
+  const PromptScreen({Key? key, required this.searchQuery}) : super(key: key);
+
   @override
-  _PlacesScreenState createState() => _PlacesScreenState();
+  _PromptScreenState createState() => _PromptScreenState();
 }
 
-class _PlacesScreenState extends State<PlacesScreen> {
+class _PromptScreenState extends State<PromptScreen> {
   final List<Place> allPlaces = [
     Place(
       name: 'Blok M Plaza',
@@ -79,7 +82,6 @@ class _PlacesScreenState extends State<PlacesScreen> {
       }).toList();
     });
   }
-  final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -170,17 +172,9 @@ class _PlacesScreenState extends State<PlacesScreen> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextField(
-                controller: _searchController,
-                onSubmitted: (value) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PromptScreen(searchQuery: value),
-                    ),
-                  );
-                },
+                onChanged: updateSearchResults,
                 decoration: InputDecoration(
-                  hintText: 'Where you wanna go?',
+                  hintText: '${widget.searchQuery}',
                   filled: true,
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
@@ -201,39 +195,6 @@ class _PlacesScreenState extends State<PlacesScreen> {
               ),
             ),
             const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white, // Ensure there's a background color to see the effect
-                    borderRadius: BorderRadius.circular(40),// Rounded corners
-                    boxShadow: [ // Optional: adds shadow for better visibility of the container's edges
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 1,
-                        blurRadius: 6,
-                        offset: Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
-                ),
-                child: categorySection()
-              )
-            ),
-            SizedBox(height:10),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Nearest You',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 7),
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -243,45 +204,6 @@ class _PlacesScreenState extends State<PlacesScreen> {
                 },
               ),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-  Widget categorySection() {
-    return SingleChildScrollView(
-
-      scrollDirection: Axis.horizontal,
-      child: Row(
-
-        children: [
-          categoryCard(Icons.explore, "Explore", 'Explore'),
-          categoryCard(Icons.content_cut, "Salon", 'Salon'),
-          categoryCard(Icons.restaurant, "Cafes and Restaurants", 'Cafes and Restaurants'),
-          categoryCard(Icons.shopping_cart, "Shopping Area", 'Shopping Area'),
-          categoryCard(Icons.local_play, "Amusement Parks", 'Amusement Parks'),
-          categoryCard(Icons.nature_people, "Nature Places", 'Nature Places'),
-          categoryCard(Icons.sports_soccer, "Sport Places", 'Sport Places'),
-          categoryCard(Icons.museum, "Museum", 'Museum'),
-        ],
-      ),
-    );
-  }
-  Widget categoryCard(IconData icon, String label, String filter) {
-    return InkWell(
-      onTap: () => filterPlaces(filter),
-      child: Container(
-        height: 60,
-        width: 80,
-        decoration: BoxDecoration(
-          color: Color(0xFFECFFE5),
-          // borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Icon(icon, color: Colors.grey[700]),
-            Center(child: Text(label, style: TextStyle(color: Colors.grey[700], fontSize: 12),textAlign: TextAlign.center,)),
           ],
         ),
       ),
@@ -346,7 +268,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
                       Container(
                         decoration: BoxDecoration(
                           color: Colors.white, // Light green background color
-                          borderRadius: BorderRadius.circular(10), // Rounded corners
+                          borderRadius: BorderRadius.circular(40), // Rounded corners
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.5),
@@ -384,7 +306,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
                             Image.network(
                               "https://cdn.discordapp.com/attachments/1264936584277528600/1266691625615364126/Image_4.png?ex=66a61201&is=66a4c081&hm=69b6e32804b129cccda309543050a0199efc377d3f696f90e423c07c9f10c91f&",
                               width: 40,
-                              height: 40,
+                              height: 30,
                               fit: BoxFit.cover,
                             ),
                           ],
@@ -429,8 +351,8 @@ class _PlacesScreenState extends State<PlacesScreen> {
                             ),
                             Image.network(
                               "https://cdn.discordapp.com/attachments/1264936584277528600/1266691417590333440/Image_3.png?ex=66a611cf&is=66a4c04f&hm=fdef8354570970f871b11e46a5065a8f7374497fcf1e3b7f5853065c5fc3ce1f&",
-                              width: 45,
-                              height: 45,
+                              width: 40,
+                              height: 30,
                               fit: BoxFit.cover,
                             ),
                           ],
