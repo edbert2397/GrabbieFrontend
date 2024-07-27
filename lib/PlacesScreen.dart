@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grabbie_fe/FormPage.dart';
 
 class Place {
   final String name;
@@ -105,28 +106,36 @@ class _PlacesScreenState extends State<PlacesScreen> {
                             color: Colors.black,
                           ),
                         ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.only(left: 10,right:50, bottom: 5,top:5), // Adjust padding to fit your design needs
-                          decoration: BoxDecoration(
-                            color: Color(0xFFCAF1DC), // Use the hex color that matches your button background
-                            borderRadius: BorderRadius.circular(30), // Adjust the border radius to get the desired roundness
-                            border: Border.all(
-                              color: Colors.white, // Set the border color
-                              width: 2, // Set the border width
+                        InkWell(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => FormPage()),
+                            );
+                          },
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(left: 10,right:50, bottom: 5,top:5), // Adjust padding to fit your design needs
+                            decoration: BoxDecoration(
+                              color: Color(0xFFCAF1DC), // Use the hex color that matches your button background
+                              borderRadius: BorderRadius.circular(30), // Adjust the border radius to get the desired roundness
+                              border: Border.all(
+                                color: Colors.white, // Set the border color
+                                width: 2, // Set the border width
+                              ),
                             ),
+                            child:IntrinsicWidth(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(Icons.add),
+                                  SizedBox(width:5),
+                                  Text("Add New Place"),
+                              
+                                ],
+                              ),
+                            )
                           ),
-                          child:IntrinsicWidth(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Icon(Icons.add),
-                                SizedBox(width:5),
-                                Text("Add New Place"),
-                            
-                              ],
-                            ),
-                          )
                         )
                       ],
                     ),
