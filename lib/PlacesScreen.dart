@@ -28,7 +28,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
   final List<Place> allPlaces = [
     Place(
       name: 'Blok M Plaza',
-      category: 'Shopping area',
+      category: 'Shopping Area',
       distance: '~1km',
       rating: 4.7,
       review: 'One of the shopping centers in South Jakarta. There is an entrance from the MRT station.',
@@ -36,7 +36,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
     ),
     Place(
       name: 'Blok M Plaza',
-      category: 'Shopping area',
+      category: 'Shopping Area',
       distance: '~1km',
       rating: 4.7,
       review: 'One of the shopping centers in South Jakarta. There is an entrance from the MRT station.',
@@ -44,7 +44,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
     ),
     Place(
       name: 'Marta Tiahahu Literacy Park',
-      category: 'Park',
+      category: 'Nature Places',
       distance: '~1.2km',
       rating: 4.7,
       review: 'Cool place to hangout, eat lots of snacks, relax while reading a book. Sometimes there are music shows too.',
@@ -57,7 +57,17 @@ class _PlacesScreenState extends State<PlacesScreen> {
   @override
   void initState() {
     super.initState();
-    displayedPlaces = List.from(allPlaces);
+    displayedPlaces = allPlaces;
+
+  }
+  void filterPlaces(String category) {
+    setState(() {
+      if (category == 'Explore') {
+        displayedPlaces = allPlaces;
+      } else {
+        displayedPlaces = allPlaces.where((place) => place.category == category).toList();
+      }
+    });
   }
 
   void updateSearchResults(String query) {
@@ -181,6 +191,25 @@ class _PlacesScreenState extends State<PlacesScreen> {
               ),
             ),
             const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white, // Ensure there's a background color to see the effect
+                    borderRadius: BorderRadius.circular(40),// Rounded corners
+                    boxShadow: [ // Optional: adds shadow for better visibility of the container's edges
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 1,
+                        blurRadius: 6,
+                        offset: Offset(0, 3), // changes position of shadow
+                      ),
+                    ],
+                ),
+                child: categorySection()
+              )
+            ),
+            SizedBox(height:10),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Align(
@@ -194,7 +223,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 7),
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -209,7 +238,45 @@ class _PlacesScreenState extends State<PlacesScreen> {
       ),
     );
   }
+  Widget categorySection() {
+    return SingleChildScrollView(
 
+      scrollDirection: Axis.horizontal,
+      child: Row(
+
+        children: [
+          categoryCard(Icons.explore, "Explore", 'Explore'),
+          categoryCard(Icons.content_cut, "Salon", 'Salon'),
+          categoryCard(Icons.restaurant, "Cafes and Restaurants", 'Cafes and Restaurants'),
+          categoryCard(Icons.shopping_cart, "Shopping Area", 'Shopping Area'),
+          categoryCard(Icons.local_play, "Amusement Parks", 'Amusement Parks'),
+          categoryCard(Icons.nature_people, "Nature Places", 'Nature Places'),
+          categoryCard(Icons.sports_soccer, "Sport Places", 'Sport Places'),
+          categoryCard(Icons.museum, "Museum", 'Museum'),
+        ],
+      ),
+    );
+  }
+  Widget categoryCard(IconData icon, String label, String filter) {
+    return InkWell(
+      onTap: () => filterPlaces(filter),
+      child: Container(
+        height: 60,
+        width: 80,
+        decoration: BoxDecoration(
+          color: Color(0xFFECFFE5),
+          // borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(icon, color: Colors.grey[700]),
+            Center(child: Text(label, style: TextStyle(color: Colors.grey[700], fontSize: 12),textAlign: TextAlign.center,)),
+          ],
+        ),
+      ),
+    );
+  }
   Widget _buildPlaceCard(Place place) {
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 10),
@@ -264,27 +331,124 @@ class _PlacesScreenState extends State<PlacesScreen> {
                       Text('Review: ${place.review}'),
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                  Column(
                     children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white, // Light green background color
+                          borderRadius: BorderRadius.circular(40), // Rounded corners
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 1,
+                              blurRadius: 6,
+                              offset: Offset(0, 3), // Shadow position
+                            ),
+                          ],
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                        margin: EdgeInsets.only(bottom: 8), // Add space between the containers
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween, // Align children to the space between
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start, // Align text to the start
+                              children: [
+                                Text(
+                                  "Start from",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                Text(
+                                  "Rp 12.000",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Image.network(
+                              "https://cdn.discordapp.com/attachments/1264936584277528600/1266691625615364126/Image_4.png?ex=66a61201&is=66a4c081&hm=69b6e32804b129cccda309543050a0199efc377d3f696f90e423c07c9f10c91f&",
+                              width: 40,
+                              height: 30,
+                              fit: BoxFit.cover,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xFFECFFE5), // Light green background color
+                          borderRadius: BorderRadius.circular(40), // Rounded corners
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 1,
+                              blurRadius: 6,
+                              offset: Offset(0, 3), // Shadow position
+                            ),
+                          ],
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween, // Align children to the space between
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start, // Align text to the start
+                              children: [
+                                Text(
+                                  "Start from",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                Text(
+                                  "Rp 20.000",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Image.network(
+                              "https://cdn.discordapp.com/attachments/1264936584277528600/1266691417590333440/Image_3.png?ex=66a611cf&is=66a4c04f&hm=fdef8354570970f871b11e46a5065a8f7374497fcf1e3b7f5853065c5fc3ce1f&",
+                              width: 40,
+                              height: 30,
+                              fit: BoxFit.cover,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ]
+                  )
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.end,
+                  //   children: [
 
-                      Image.network(
-                       "https://cdn.discordapp.com/attachments/1264936584277528600/1266691625615364126/Image_4.png?ex=66a61201&is=66a4c081&hm=69b6e32804b129cccda309543050a0199efc377d3f696f90e423c07c9f10c91f&",
-                        width: 45,
-                        height:45,
-                        fit: BoxFit.cover,
-                      ),
-                      const SizedBox(width: 8),
-                      Text("or"),
-                      const SizedBox(width: 8),
-                      Image.network(
-                       "https://cdn.discordapp.com/attachments/1264936584277528600/1266691417590333440/Image_3.png?ex=66a611cf&is=66a4c04f&hm=fdef8354570970f871b11e46a5065a8f7374497fcf1e3b7f5853065c5fc3ce1f&",
-                        width: 45,
-                        height: 45,
-                        fit: BoxFit.cover,
-                      ),
-                    ],
-                  ),
+                  //     Image.network(
+                  //      "https://cdn.discordapp.com/attachments/1264936584277528600/1266691625615364126/Image_4.png?ex=66a61201&is=66a4c081&hm=69b6e32804b129cccda309543050a0199efc377d3f696f90e423c07c9f10c91f&",
+                  //       width: 45,
+                  //       height:45,
+                  //       fit: BoxFit.cover,
+                  //     ),
+                  //     const SizedBox(width: 8),
+                  //     Text("or"),
+                  //     const SizedBox(width: 8),
+                  //     Image.network(
+                  //      "https://cdn.discordapp.com/attachments/1264936584277528600/1266691417590333440/Image_3.png?ex=66a611cf&is=66a4c04f&hm=fdef8354570970f871b11e46a5065a8f7374497fcf1e3b7f5853065c5fc3ce1f&",
+                  //       width: 45,
+                  //       height: 45,
+                  //       fit: BoxFit.cover,
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),
