@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class FormPage extends StatefulWidget {
   const FormPage({super.key});
@@ -8,6 +9,22 @@ class FormPage extends StatefulWidget {
 }
 
 class _FormPageState extends State<FormPage> {
+  final TextEditingController _reviewController = TextEditingController();
+  final TextEditingController _placeNameController = TextEditingController();
+  final TextEditingController _locationController = TextEditingController();
+  String _selectedCategory = 'Restaurant';
+  final List<String> _categories = ['Restaurant', 'Museum', 'Park', 'Shop'];
+  final ImagePicker _picker = ImagePicker();
+  XFile? _image;
+  int _currentRating =  5;
+
+  Future<void> _pickImage() async {
+    final pickedImage = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = pickedImage;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +39,8 @@ class _FormPageState extends State<FormPage> {
           },
         ),
       ),
-      body: Container(
-        color: Colors.white,
+      body: SingleChildScrollView(
+        // color: Colors.white,
         child: Column(
           children: [
             Container(
@@ -65,7 +82,7 @@ class _FormPageState extends State<FormPage> {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.info_outline, color: Colors.black), /
+                      Icon(Icons.info_outline, color: Colors.black), 
                       SizedBox(width: 10), // Space between icon and text
                       Expanded(
                         child: Text(
@@ -89,11 +106,230 @@ class _FormPageState extends State<FormPage> {
                   )
                 ],
               ),
-            )
-
+            ),
+            Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+              ),
+              child: Column(
+                children: [
+                  SizedBox(height:10),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Place Name:",
+                      style:TextStyle(
+                        fontSize: 15,
+                      )
+                    ),
+                    
+                  ),
+                  SizedBox(
+                    height:45,
+                    child: TextField(
+                      controller: _placeNameController,
+                      decoration: InputDecoration(
+                        hintText: 'Place Name:',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 12),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Category:",
+                      style:TextStyle(
+                        fontSize: 15,
+                      )
+                    ),
+                  ),
+                  Container(
+                    height: 50,
+                    child: DropdownButtonFormField<String>(
+                      value: _selectedCategory,
+                      onChanged: (newValue) {
+                        setState(() {
+                          _selectedCategory = newValue!;
+                        });
+                      },
+                      items: _categories.map((category) {
+                        return DropdownMenuItem(
+                          value: category,
+                          child: Text(category),
+                        );
+                      }).toList(),
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 12),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Location:",
+                      style:TextStyle(
+                        fontSize: 15,
+                      )
+                    ),
+                    
+                  ),
+                  SizedBox(
+                    height:45,
+                    child: TextField(
+                      controller: _locationController,
+                      decoration: InputDecoration(
+                        hintText: 'Set pin point:',
+                        suffixIcon: Icon(Icons.location_pin),
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 12),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Add Place Photo:",
+                      style:TextStyle(
+                        fontSize: 15,
+                      )
+                    ),
+                    
+                  ),
+                  Row(
+                  children: [
+                    ElevatedButton(
+                      onPressed: _pickImage,
+                      child: Text('Choose Image'),
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white, // Text color
+                        backgroundColor: Colors.grey[300], // Background color
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: Container(
+                        height: 48, // Matching the height of the ElevatedButton
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Text(
+                            _image?.name ?? 'No image chosen', // Display the name of the file
+                            style: TextStyle(fontSize: 16),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                  SizedBox(height: 12),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Add Menu or Pricelist Photo:",
+                      style:TextStyle(
+                        fontSize: 15,
+                      )
+                    ),
+                    
+                  ),
+                  Row(
+                    children: [
+                      ElevatedButton(
+                        onPressed: _pickImage,
+                        child: Text('Choose Image'),
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white, // Text color
+                          backgroundColor: Colors.grey[300], // Background color
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        child: Container(
+                          height: 48, // Matching the height of the ElevatedButton
+                          alignment: Alignment.centerLeft,
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Text(
+                              _image?.name ?? 'No image chosen', // Display the name of the file
+                              style: TextStyle(fontSize: 16),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 12),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Review:",
+                      style:TextStyle(
+                        fontSize: 15,
+                      )
+                    ),
+                    
+                  ),
+                  SizedBox(
+                    height:65,
+                    child: TextField(
+                      controller: _reviewController,
+                      decoration: InputDecoration(
+                        hintText: 'Share details of your experience here...:',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height:12),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Rating:",
+                      style:TextStyle(
+                        fontSize: 15,
+                      )
+                    ),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: List.generate(5, (index) { // Generate 5 stars
+                      return IconButton(
+                        icon: Icon(
+                          index < _currentRating ? Icons.star : Icons.star_border, // Fill star if index is less than current rating
+                          color: index < _currentRating ? Colors.yellow : Colors.grey, // Yellow if selected, grey otherwise
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _currentRating = index + 1; // Set rating to index of pressed star + 1
+                          });
+                        },
+                        iconSize: 30, // Set the icon size for better visibility
+                      );
+                    }),
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Submit form functionality here
+                    },
+                    child: Text('Submit'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF36C073),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
-        ),
-      );
+
+      ),
+    );
   }
 }
