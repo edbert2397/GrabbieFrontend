@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:grabbie_fe/Navbar.dart';
-import 'package:grabbie_fe/SurveyScreen2.dart';
-class SurveyScreen extends StatefulWidget {
+import 'package:grabbie_fe/SurveyScreen3.dart';
+class SurveyScreen2 extends StatefulWidget {
+  const SurveyScreen2({super.key});
+
   @override
-  _SurveyScreenState createState() => _SurveyScreenState();
+  State<SurveyScreen2> createState() => _SurveyScreen2State();
 }
 
-class _SurveyScreenState extends State<SurveyScreen> {
+class _SurveyScreen2State extends State<SurveyScreen2> {
   final List<String> options = [
-    "Museums and art galleries",
-    "Restaurants and cafes",
-    "Shopping areas",
-    "Historical sites",
-    "Amusement parks",
-    "Nature place",
-    "Sport place"
+    "Busy and full of activities",
+    "Quiet and peaceful",
   ];
   List<String> selectedOptions = [];
 
@@ -35,10 +31,9 @@ class _SurveyScreenState extends State<SurveyScreen> {
       ),
       body: Container(
         color: Colors.white,
-        child: SingleChildScrollView(  // Wrap the Column with SingleChildScrollView
-            
-            child: Column(
+        child: Column(
               children: [
+
                 Container(
                   height: 75,
                   padding: EdgeInsets.only(left: 20,right:10),
@@ -69,7 +64,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.only(left:20),
                   child: Text(
-                    'Question 1 of 3',
+                    'Question 2 of 3',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w100,
@@ -86,26 +81,20 @@ class _SurveyScreenState extends State<SurveyScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 5),
-                Text(
-                  'Choose your top 3!',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey,
-                  ),
-                ),
-                SizedBox(height: 5),
+                SizedBox(height: 10),
+                
                 ...options.map((option) => GestureDetector(
                   onTap: () {
                     setState(() {
                       if (selectedOptions.contains(option)) {
                         selectedOptions.remove(option);
-                      } else if (selectedOptions.length < 3) {
+                      } else if (selectedOptions.length < 1) {
                         selectedOptions.add(option);
                       }
                     });
                   },
                   child: Container(
+
                     margin: EdgeInsets.symmetric(vertical: 5),
                     padding: EdgeInsets.all(16),
                     width:300,
@@ -128,13 +117,13 @@ class _SurveyScreenState extends State<SurveyScreen> {
                     ),
                   ),
                 )),
-                SizedBox(height: 20),
+                Spacer(),
                 ElevatedButton(
 
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SurveyScreen2()),
+                      MaterialPageRoute(builder: (context) => SurveyScreen3()),
                     );
                   },
                   child: Icon(Icons.arrow_right_alt_rounded, color: Colors.white,size:35),
@@ -152,7 +141,6 @@ class _SurveyScreenState extends State<SurveyScreen> {
               ],
             ),
           ),
-        ),
       );
   }
 }
