@@ -36,7 +36,7 @@ class _SurveyScreen3State extends State<SurveyScreen3> {
               children: [
 
                 Container(
-                  height: 75,
+                  height: 85,
                   padding: EdgeInsets.only(left: 20,right:10),
                   color: Color(0xFF36C073), // Background color of the container
                   child: Row(
@@ -47,16 +47,22 @@ class _SurveyScreen3State extends State<SurveyScreen3> {
                         child: Text(
                           'Explore somewhere interesting and enjoy the vibes!',
                           style: TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w100,
+                            fontSize: 17.0,
+                            fontWeight: FontWeight.w200,
                             color: Colors.black,
                           ),
                         ),
                       ),
-                      Image.asset(
-                        '../assets/images/logo2.png',  // Adjust the asset path as necessary
-                        width: 125, // Set an appropriate width for your image
-                        height:75,
+                      // Image.asset(
+                      //   '../assets/images/logo2.png',  // Adjust the asset path as necessary
+                      //   width: 125, // Set an appropriate width for your image
+                      //   height:75,
+                      // ),
+                      Image.network(
+                       "https://cdn.discordapp.com/attachments/1264936584277528600/1266683792928800878/logo2.png?ex=66a60ab6&is=66a4b936&hm=f014bc60f05f2a464b1346476f40e0742f475b17ab5038d12c8292850a5948b9&",
+                        width: 65,
+                        height: 85,
+                        fit: BoxFit.cover,
                       ),
                     ]
                   )

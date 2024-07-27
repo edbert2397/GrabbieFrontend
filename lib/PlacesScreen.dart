@@ -87,7 +87,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
         child: Column(
           children: [
             Container(
-              height: 75,
+              height: 95,
               padding: EdgeInsets.only(left: 20,right:10),
               color: Color(0xFF36C073), // Background color of the container
               child: Row(
@@ -95,20 +95,54 @@ class _PlacesScreenState extends State<PlacesScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Expanded(
-                    child: Text(
-                      'Explore somewhere interesting and enjoy the vibes!',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w100,
-                        color: Colors.black,
-                      ),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Explore somewhere interesting and enjoy the vibes!',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w100,
+                            color: Colors.black,
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          padding: EdgeInsets.only(left: 10,right:50, bottom: 5,top:5), // Adjust padding to fit your design needs
+                          decoration: BoxDecoration(
+                            color: Color(0xFFCAF1DC), // Use the hex color that matches your button background
+                            borderRadius: BorderRadius.circular(30), // Adjust the border radius to get the desired roundness
+                            border: Border.all(
+                              color: Colors.white, // Set the border color
+                              width: 2, // Set the border width
+                            ),
+                          ),
+                          child:IntrinsicWidth(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Icon(Icons.add),
+                                SizedBox(width:5),
+                                Text("Add New Place"),
+                            
+                              ],
+                            ),
+                          )
+                        )
+                      ],
                     ),
                   ),
-                  Image.asset(
-                    '../assets/images/logo2.png',  // Adjust the asset path as necessary
-                    width: 125, // Set an appropriate width for your image
-                    height:75,
-                  ),
+                  // Image.asset(
+                  //   '../assets/images/logo2.png',  // Adjust the asset path as necessary
+                  //   width: 125, // Set an appropriate width for your image
+                  //   height:75,
+                  // ),
+                  
+                  Image.network(
+                       "https://cdn.discordapp.com/attachments/1264936584277528600/1266683792928800878/logo2.png?ex=66a60ab6&is=66a4b936&hm=f014bc60f05f2a464b1346476f40e0742f475b17ab5038d12c8292850a5948b9&",
+                        width: 65,
+                        height: 95,
+                        fit: BoxFit.cover,
+                      ),
                 ]
               )
             ),
@@ -224,11 +258,22 @@ class _PlacesScreenState extends State<PlacesScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      _buildTransportIcon("motor"),
+
+                      Image.network(
+                       "https://cdn.discordapp.com/attachments/1264936584277528600/1266691625615364126/Image_4.png?ex=66a61201&is=66a4c081&hm=69b6e32804b129cccda309543050a0199efc377d3f696f90e423c07c9f10c91f&",
+                        width: 45,
+                        height:45,
+                        fit: BoxFit.cover,
+                      ),
                       const SizedBox(width: 8),
                       Text("or"),
                       const SizedBox(width: 8),
-                      _buildTransportIcon("mobil"),
+                      Image.network(
+                       "https://cdn.discordapp.com/attachments/1264936584277528600/1266691417590333440/Image_3.png?ex=66a611cf&is=66a4c04f&hm=fdef8354570970f871b11e46a5065a8f7374497fcf1e3b7f5853065c5fc3ce1f&",
+                        width: 45,
+                        height: 45,
+                        fit: BoxFit.cover,
+                      ),
                     ],
                   ),
                 ],
