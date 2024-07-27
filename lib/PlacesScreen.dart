@@ -55,14 +55,18 @@ class _PlacesScreenState extends State<PlacesScreen> {
 
   List<Place> displayedPlaces = [];
 
+  List<bool> isTappedList = List<bool>.filled(8, false); 
+
   @override
   void initState() {
     super.initState();
     displayedPlaces = allPlaces;
+    isTappedList[0] = true;
 
   }
   void filterPlaces(String category) {
     setState(() {
+      
       if (category == 'Explore') {
         displayedPlaces = allPlaces;
       } else {
@@ -80,6 +84,16 @@ class _PlacesScreenState extends State<PlacesScreen> {
     });
   }
   final TextEditingController _searchController = TextEditingController();
+
+  // void _onTap() {
+  //   setState(() {
+  //     for (int i = 0; i < isTappedList.length; i++) {
+  //       isTappedList[i] = false;
+  //     }
+  //     isTappedList[widget.index] = true;
+  //   });
+  //   filterPlaces(widget.filter);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -255,21 +269,30 @@ class _PlacesScreenState extends State<PlacesScreen> {
       child: Row(
 
         children: [
-          categoryCard(Icons.explore, "Explore", 'Explore'),
-          categoryCard(Icons.content_cut, "Salon", 'Salon'),
-          categoryCard(Icons.restaurant, "Cafes and Restaurants", 'Cafes and Restaurants'),
-          categoryCard(Icons.shopping_cart, "Shopping Area", 'Shopping Area'),
-          categoryCard(Icons.local_play, "Amusement Parks", 'Amusement Parks'),
-          categoryCard(Icons.nature_people, "Nature Places", 'Nature Places'),
-          categoryCard(Icons.sports_soccer, "Sport Places", 'Sport Places'),
-          categoryCard(Icons.museum, "Museum", 'Museum'),
+          categoryCard(Icons.explore, "Explore", 'Explore',0),
+          categoryCard(Icons.content_cut, "Salon", 'Salon',1),
+          categoryCard(Icons.restaurant, "Cafes and Restaurants", 'Cafes and Restaurants',2),
+          categoryCard(Icons.shopping_cart, "Shopping Area", 'Shopping Area',3),
+          categoryCard(Icons.local_play, "Amusement Parks", 'Amusement Parks',4),
+          categoryCard(Icons.nature_people, "Nature Places", 'Nature Places',5),
+          categoryCard(Icons.sports_soccer, "Sport Places", 'Sport Places',6),
+          categoryCard(Icons.museum, "Museum", 'Museum',7),
         ],
       ),
     );
   }
-  Widget categoryCard(IconData icon, String label, String filter) {
+  Widget categoryCard(IconData icon, String label, String filter,int index) {
     return InkWell(
-      onTap: () => filterPlaces(filter),
+      // onTap: () => filterPlaces(filter),
+      onTap:(){
+        setState(() {
+          for (int i = 0; i < isTappedList.length; i++) {
+            isTappedList[i] = false;
+          }
+          isTappedList[index] = true;
+        });
+        filterPlaces(filter);
+      },
       child: Container(
         height: 60,
         width: 80,
@@ -280,8 +303,8 @@ class _PlacesScreenState extends State<PlacesScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Icon(icon, color: Colors.grey[700]),
-            Center(child: Text(label, style: TextStyle(color: Colors.grey[700], fontSize: 12),textAlign: TextAlign.center,)),
+            Icon(icon, color: isTappedList[index] ? Colors.green[700] : Colors.grey[700]),
+            Center(child: Text(label, style: TextStyle(color: isTappedList[index] ? Colors.green[700] : Colors.grey[700], fontSize: 12,fontWeight: isTappedList[index] ? FontWeight.bold : FontWeight.normal),textAlign: TextAlign.center,)),
           ],
         ),
       ),
@@ -346,7 +369,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
                       Container(
                         decoration: BoxDecoration(
                           color: Colors.white, // Light green background color
-                          borderRadius: BorderRadius.circular(10), // Rounded corners
+                          borderRadius: BorderRadius.circular(40), // Rounded corners
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.5),
@@ -384,7 +407,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
                             Image.network(
                               "https://cdn.discordapp.com/attachments/1264936584277528600/1266691625615364126/Image_4.png?ex=66a61201&is=66a4c081&hm=69b6e32804b129cccda309543050a0199efc377d3f696f90e423c07c9f10c91f&",
                               width: 40,
-                              height: 40,
+                              height: 30,
                               fit: BoxFit.cover,
                             ),
                           ],
@@ -429,8 +452,8 @@ class _PlacesScreenState extends State<PlacesScreen> {
                             ),
                             Image.network(
                               "https://cdn.discordapp.com/attachments/1264936584277528600/1266691417590333440/Image_3.png?ex=66a611cf&is=66a4c04f&hm=fdef8354570970f871b11e46a5065a8f7374497fcf1e3b7f5853065c5fc3ce1f&",
-                              width: 45,
-                              height: 45,
+                              width: 40,
+                              height: 30,
                               fit: BoxFit.cover,
                             ),
                           ],
