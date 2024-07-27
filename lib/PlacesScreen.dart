@@ -31,7 +31,15 @@ class _PlacesScreenState extends State<PlacesScreen> {
       distance: '~1km',
       rating: 4.7,
       review: 'One of the shopping centers in South Jakarta. There is an entrance from the MRT station.',
-      imageUrl: 'https://example.com/image1.jpg', // Replace with actual image URL or asset
+      imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984531992576/blokm.png?ex=66a60193&is=66a4b013&hm=4d01a1a601617031a2877bfa566fd2f9bc0d314b06802a575a81b8875232794f&', // Replace with actual image URL or asset
+    ),
+    Place(
+      name: 'Blok M Plaza',
+      category: 'Shopping area',
+      distance: '~1km',
+      rating: 4.7,
+      review: 'One of the shopping centers in South Jakarta. There is an entrance from the MRT station.',
+      imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984531992576/blokm.png?ex=66a60193&is=66a4b013&hm=4d01a1a601617031a2877bfa566fd2f9bc0d314b06802a575a81b8875232794f&', // Replace with actual image URL or asset
     ),
     Place(
       name: 'Marta Tiahahu Literacy Park',
@@ -39,7 +47,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
       distance: '~1.2km',
       rating: 4.7,
       review: 'Cool place to hangout, eat lots of snacks, relax while reading a book. Sometimes there are music shows too.',
-      imageUrl: 'https://example.com/image2.jpg', // Replace with actual image URL or asset
+      imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984796098622/marta.png?ex=66a60193&is=66a4b013&hm=df66617d1b2cd5cb74d772120151cad599d087ad3ca1927c28af3e989bc4628e&', // Replace with actual image URL or asset
     ),
   ];
 
@@ -165,6 +173,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
+      color: Color(0xFFECFFE5),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Row(
@@ -173,8 +182,8 @@ class _PlacesScreenState extends State<PlacesScreen> {
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
                 place.imageUrl,
-                width: 100,
-                height: 100,
+                width: 150,
+                height: 175,
                 fit: BoxFit.cover,
               ),
             ),
@@ -216,8 +225,9 @@ class _PlacesScreenState extends State<PlacesScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       _buildTransportIcon("motor"),
-                      const SizedBox(height: 5),
-                      Text("or")
+                      const SizedBox(width: 8),
+                      Text("or"),
+                      const SizedBox(width: 8),
                       _buildTransportIcon("mobil"),
                     ],
                   ),
