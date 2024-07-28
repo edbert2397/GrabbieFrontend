@@ -208,13 +208,16 @@ class _PlacesScreenState extends State<PlacesScreen> {
               child: TextField(
                 controller: _searchController,
                 onSubmitted: (value) {
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => PromptScreen(searchQuery: value),
                     ),
                   );
+                  _searchController.clear();
                 },
+                
                 decoration: InputDecoration(
                   hintText: 'Where you wanna go?',
                   filled: true,
