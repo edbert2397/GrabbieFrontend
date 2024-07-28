@@ -35,7 +35,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
     Place(
       name: 'Blok M Plaza',
       category: 'Shopping Area',
-      starting_price: "Rp40.000",
+      starting_price: "Rp10.000",
       rating: 4.7,
       review: 'One of the shopping centers in South Jakarta. There is an entrance from the MRT station.',
       imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984531992576/blokm.png?ex=66a60193&is=66a4b013&hm=4d01a1a601617031a2877bfa566fd2f9bc0d314b06802a575a81b8875232794f&', // Replace with actual image URL or asset
@@ -43,15 +43,15 @@ class _PlacesScreenState extends State<PlacesScreen> {
     Place(
       name: 'M Bloc Space',
       category: 'Shopping Area',
-      starting_price: "Rp40.000",
+      starting_price: "Rp30.000",
       rating: 4.6,
       review: 'The location is very strategic to reach public transportation. The place is nice and very interesting.',
-      imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984531992576/blokm.png?ex=66a60193&is=66a4b013&hm=4d01a1a601617031a2877bfa566fd2f9bc0d314b06802a575a81b8875232794f&', // Replace with actual image URL or asset
+      imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266916041301426268/image_5.png?ex=66a6e302&is=66a59182&hm=36ee63cc3301713378c95738fb7465ed8a686c463f4f92959c7d72f804caa47d&', // Replace with actual image URL or asset
     ),
     Place(
       name: 'Marta Tiahahu Literacy Park',
       category: 'Nature Places',
-      starting_price: "Rp60.000",
+      starting_price: "-",
       rating: 4.7,
       review: 'Cool place to hangout, eat lots of snacks, relax while reading a book. Sometimes there are music shows too.',
       imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984796098622/marta.png?ex=66a60193&is=66a4b013&hm=df66617d1b2cd5cb74d772120151cad599d087ad3ca1927c28af3e989bc4628e&', // Replace with actual image URL or asset
@@ -62,7 +62,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
       starting_price: "Rp50.000",
       rating: 4.5,
       review: 'Cool place to hangout, eat lots of snacks, relax while reading a book. Sometimes there are music shows too.',
-      imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984796098622/marta.png?ex=66a60193&is=66a4b013&hm=df66617d1b2cd5cb74d772120151cad599d087ad3ca1927c28af3e989bc4628e&', // Replace with actual image URL or asset
+      imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266938223515406336/image_4.png?ex=66a6f7ab&is=66a5a62b&hm=d2ebfd043d213b221279df913c272b1c1e5caf175cb976473665a8295b27033b&', // Replace with actual image URL or asset
     ),
     Place(
       name: 'Filosofi Kopi',
@@ -70,7 +70,31 @@ class _PlacesScreenState extends State<PlacesScreen> {
       starting_price: "Rp18.000",
       rating: 4.5,
       review: 'Favorite coffee is butterscotch coffee. The wifi is quite fast. The fun seat is by the window, you can see the activity outside.',
-      imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984796098622/marta.png?ex=66a60193&is=66a4b013&hm=df66617d1b2cd5cb74d772120151cad599d087ad3ca1927c28af3e989bc4628e&', // Replace with actual image URL or asset
+      imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266885224349044808/image_6.png?ex=66a6c64f&is=66a574cf&hm=2b65210de71f4fe319e14746df46f543ac95d0aa02380267fae5f1de02791eee&', // Replace with actual image URL or asset
+    ),
+    Place(
+      name: 'Futago Ya',
+      category: 'Cafes and Restaurants',
+      starting_price: "Rp40.000",
+      rating: 4.5,
+      review: 'Japanese Vibes, Good Service, Creamy Udon, Affordable Price.',
+      imageUrl: 'https://lh3.googleusercontent.com/p/AF1QipOfCkiplNcMXDFNHM8vSxnSC32w5pedBYALYGLg=s680-w680-h510',
+    ),
+    Place(
+      name: 'HAKA Dimsum Blok M',
+      category: 'Cafes and Restaurants',
+      starting_price: "Rp30.000",
+      rating: 4.4,
+      review: 'The place is nice, a lot of seating, have a very old chinatown vibe, a bit loud. The food is great, love all the dimsum',
+      imageUrl: 'https://lh3.googleusercontent.com/p/AF1QipOZqDLcybobONoDTH9-MlFKvPwKHxJlSShCcCT2=s680-w680-h510', // Replace with actual image URL or asset
+    ),
+    Place(
+      name: 'Kedai Tjikini - M Bloc Space',
+      category: 'Cafes and Restaurants',
+      starting_price: "Rp30.000",
+      rating: 4.3,
+      review:  "Place is nice and comfortable with the ambience of grandma's home..",
+      imageUrl: 'https://lh3.googleusercontent.com/p/AF1QipM8ckPBqnpvHcvJS5k7QmKe8_SIlomnoEQMjUyq=s680-w680-h510', // Replace with actual image URL or asset
     ),
   ];
 
@@ -321,8 +345,6 @@ class _PlacesScreenState extends State<PlacesScreen> {
           categoryCard(Icons.shopping_cart, "Shopping Area", 'Shopping Area',3),
           categoryCard(Icons.local_play, "Amusement Parks", 'Amusement Parks',4),
           categoryCard(Icons.nature_people, "Nature Places", 'Nature Places',5),
-          categoryCard(Icons.sports_soccer, "Sport Places", 'Sport Places',6),
-          categoryCard(Icons.museum, "Museum", 'Museum',7),
         ],
       ),
     );
