@@ -12,10 +12,12 @@ class _FormPageState extends State<FormPage> {
   final TextEditingController _reviewController = TextEditingController();
   final TextEditingController _placeNameController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
-  String _selectedCategory = 'Restaurant';
-  final List<String> _categories = ['Restaurant', 'Museum', 'Park', 'Shop'];
+  final TextEditingController _ownerContactController = TextEditingController();
+  String _selectedCategory = 'Salon';
+  final List<String> _categories = [ 'Salon', 'Cafes and Restaurants', 'Shopping Area','Amusement Parks','Nature Places','Sport Places','Museum'];
   final ImagePicker _picker = ImagePicker();
   XFile? _image;
+  XFile? _image2;
   int _currentRating =  5;
 
   Future<void> _pickImage() async {
@@ -24,6 +26,13 @@ class _FormPageState extends State<FormPage> {
       _image = pickedImage;
     });
   }
+  Future<void> _pickImage2() async {
+    final pickedImage = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image2 = pickedImage;
+    });
+  }
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -131,6 +140,7 @@ class _FormPageState extends State<FormPage> {
                         hintText: 'Place Name:',
                         border: OutlineInputBorder(),
                       ),
+                      
                     ),
                   ),
                   SizedBox(height: 12),
@@ -181,6 +191,27 @@ class _FormPageState extends State<FormPage> {
                         suffixIcon: Icon(Icons.location_pin),
                         border: OutlineInputBorder(),
                       ),
+                    ),
+                  ),
+                  SizedBox(height: 12),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Owner Contact:",
+                      style:TextStyle(
+                        fontSize: 15,
+                      )
+                    ),
+                    
+                  ),
+                  SizedBox(
+                    height:45,
+                    child: TextField(
+                      controller: _ownerContactController,
+                      decoration: InputDecoration(
+                        hintText: 'Enter phone number:',
+                        border: OutlineInputBorder(),
+                      ),
+                      keyboardType: TextInputType.number,
                     ),
                   ),
                   SizedBox(height: 12),
@@ -238,7 +269,7 @@ class _FormPageState extends State<FormPage> {
                   Row(
                     children: [
                       ElevatedButton(
-                        onPressed: _pickImage,
+                        onPressed: _pickImage2,
                         child: Text('Choose Image'),
                         style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.white, // Text color
@@ -258,7 +289,7 @@ class _FormPageState extends State<FormPage> {
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Text(
-                              _image?.name ?? 'No image chosen', // Display the name of the file
+                              _image2?.name ?? 'No image chosen', // Display the name of the file
                               style: TextStyle(fontSize: 16),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -317,6 +348,10 @@ class _FormPageState extends State<FormPage> {
                   ElevatedButton(
                     onPressed: () {
                       // Submit form functionality here
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Form submitted successfully')),
+                      );
+                      Navigator.pop(context);
                     },
                     child: Text('Submit'),
                     style: ElevatedButton.styleFrom(

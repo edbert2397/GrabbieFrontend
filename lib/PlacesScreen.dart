@@ -5,16 +5,16 @@ import 'package:grabbie_fe/PromptScreen.dart';
 class Place {
   final String name;
   final String category;
-  final String distance;
   final double rating;
+  final String starting_price;
   final String review;
   final String imageUrl;
 
   Place({
     required this.name,
     required this.category,
-    required this.distance,
     required this.rating,
+    required this.starting_price,
     required this.review,
     required this.imageUrl,
   });
@@ -30,7 +30,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
     Place(
       name: 'Blok M Plaza',
       category: 'Shopping Area',
-      distance: '~1km',
+      starting_price: "Rp40.000",
       rating: 4.7,
       review: 'One of the shopping centers in South Jakarta. There is an entrance from the MRT station.',
       imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984531992576/blokm.png?ex=66a60193&is=66a4b013&hm=4d01a1a601617031a2877bfa566fd2f9bc0d314b06802a575a81b8875232794f&', // Replace with actual image URL or asset
@@ -38,7 +38,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
     Place(
       name: 'Blok M Plaza',
       category: 'Shopping Area',
-      distance: '~1km',
+      starting_price: "Rp40.000",
       rating: 4.7,
       review: 'One of the shopping centers in South Jakarta. There is an entrance from the MRT station.',
       imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984531992576/blokm.png?ex=66a60193&is=66a4b013&hm=4d01a1a601617031a2877bfa566fd2f9bc0d314b06802a575a81b8875232794f&', // Replace with actual image URL or asset
@@ -46,7 +46,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
     Place(
       name: 'Marta Tiahahu Literacy Park',
       category: 'Nature Places',
-      distance: '~1.2km',
+      starting_price: "Rp60.000",
       rating: 4.7,
       review: 'Cool place to hangout, eat lots of snacks, relax while reading a book. Sometimes there are music shows too.',
       imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984796098622/marta.png?ex=66a60193&is=66a4b013&hm=df66617d1b2cd5cb74d772120151cad599d087ad3ca1927c28af3e989bc4628e&', // Replace with actual image URL or asset
@@ -85,16 +85,6 @@ class _PlacesScreenState extends State<PlacesScreen> {
   }
   final TextEditingController _searchController = TextEditingController();
 
-  // void _onTap() {
-  //   setState(() {
-  //     for (int i = 0; i < isTappedList.length; i++) {
-  //       isTappedList[i] = false;
-  //     }
-  //     isTappedList[widget.index] = true;
-  //   });
-  //   filterPlaces(widget.filter);
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,7 +106,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
             Container(
               height: 95,
               padding: EdgeInsets.only(left: 20,right:10),
-              color: Color(0xFF36C073), // Background color of the container
+              color: Color(0xFF36C073), 
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -132,37 +122,69 @@ class _PlacesScreenState extends State<PlacesScreen> {
                             color: Colors.black,
                           ),
                         ),
-                        InkWell(
-                          onTap: (){
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => FormPage()),
-                            );
-                          },
-                          child: Container(
-                            alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.only(left: 10,right:50, bottom: 5,top:5), // Adjust padding to fit your design needs
-                            decoration: BoxDecoration(
-                              color: Color(0xFFCAF1DC), // Use the hex color that matches your button background
-                              borderRadius: BorderRadius.circular(30), // Adjust the border radius to get the desired roundness
-                              border: Border.all(
-                                color: Colors.white, // Set the border color
-                                width: 2, // Set the border width
+                        // SizedBox(height:5),
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => FormPage()),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFFCAF1DC), // Background color
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
                               ),
+                              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                             ),
-                            child:IntrinsicWidth(
+                            child: IntrinsicWidth(
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Icon(Icons.add),
-                                  SizedBox(width:5),
+                                  SizedBox(width: 5),
                                   Text("Add New Place"),
-                              
                                 ],
                               ),
-                            )
+                            ),
                           ),
                         )
+                        // Container(
+                        //   alignment: Alignment.centerLeft,
+                        //   child: InkWell(
+                            
+                        //     onTap: (){
+                        //       Navigator.push(
+                        //         context,
+                        //         MaterialPageRoute(builder: (context) => FormPage()),
+                        //       );
+                        //     },
+                        //     child: Container(
+                        //       width: 186,
+                        //       padding: EdgeInsets.only(left: 10,right:50, bottom: 5,top:5), 
+                        //       decoration: BoxDecoration(
+                        //         color: Color(0xFFCAF1DC), 
+                        //         borderRadius: BorderRadius.circular(30),
+                        //         border: Border.all(
+                        //           color: Colors.white,
+                        //           width: 0, 
+                        //         ),
+                        //       ),
+                        //       child:IntrinsicWidth(
+                        //         child: Row(
+                        //           mainAxisAlignment: MainAxisAlignment.start,
+                        //           children: [
+                        //             Icon(Icons.add),
+                        //             SizedBox(width:5),
+                        //             Text("Add New Place"),
+                        //           ],
+                        //         ),
+                        //       )
+                        //     ),
+                        //   ),
+                        // )
                       ],
                     ),
                   ),
@@ -199,7 +221,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide.none, // This hides the border for the default state
+                    borderSide: BorderSide.none, 
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
@@ -219,16 +241,16 @@ class _PlacesScreenState extends State<PlacesScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white, // Ensure there's a background color to see the effect
-                    borderRadius: BorderRadius.circular(40),// Rounded corners
-                    boxShadow: [ // Optional: adds shadow for better visibility of the container's edges
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 1,
-                        blurRadius: 6,
-                        offset: Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
+                  color: Color(0xFFECFFE5), // Ensure there's a background color to see the effect
+                    borderRadius: BorderRadius.circular(10),// Rounded corners
+                    // boxShadow: [ // Optional: adds shadow for better visibility of the container's edges
+                    //   BoxShadow(
+                    //     color: Colors.grey.withOpacity(0.5),
+                    //     spreadRadius: 1,
+                    //     blurRadius: 6,
+                    //     offset: Offset(0, 3), // changes position of shadow
+                    //   ),
+                    // ],
                 ),
                 child: categorySection()
               )
@@ -294,10 +316,10 @@ class _PlacesScreenState extends State<PlacesScreen> {
         filterPlaces(filter);
       },
       child: Container(
-        height: 60,
+        height: 70,
         width: 80,
         decoration: BoxDecoration(
-          color: Color(0xFFECFFE5),
+          color: Colors.transparent,
           // borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
@@ -346,7 +368,7 @@ class _PlacesScreenState extends State<PlacesScreen> {
                       ),
                       const SizedBox(height: 5),
                       Text('Category: ${place.category}'),
-                      Text('Estimation distance: ${place.distance}'),
+                      Text('Starting price: ${place.starting_price}'),
                       Row(
                         children: [
                           const Text('Rating: '),

@@ -4,7 +4,7 @@ import 'package:grabbie_fe/FormPage.dart';
 class Place {
   final String name;
   final String category;
-  final String distance;
+  final String rangePrice;
   final double rating;
   final String review;
   final String imageUrl;
@@ -12,7 +12,7 @@ class Place {
   Place({
     required this.name,
     required this.category,
-    required this.distance,
+    required this.rangePrice,
     required this.rating,
     required this.review,
     required this.imageUrl,
@@ -31,28 +31,28 @@ class PromptScreen extends StatefulWidget {
 class _PromptScreenState extends State<PromptScreen> {
   final List<Place> allPlaces = [
     Place(
-      name: 'Blok M Plaza',
-      category: 'Shopping Area',
-      distance: '~1km',
-      rating: 4.7,
-      review: 'One of the shopping centers in South Jakarta. There is an entrance from the MRT station.',
-      imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984531992576/blokm.png?ex=66a60193&is=66a4b013&hm=4d01a1a601617031a2877bfa566fd2f9bc0d314b06802a575a81b8875232794f&', // Replace with actual image URL or asset
+      name: 'Filosofi Kopi',
+      category: 'Cafe',
+      rangePrice: 'Rp18.000 - Rp35.000',
+      rating: 4.9,
+      review: 'My favorite is butterscotch coffee. The wifi is quite fast. The fun seat is by the window, you can see the activity outside.',
+      imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266885224349044808/image_6.png?ex=66a6c64f&is=66a574cf&hm=2b65210de71f4fe319e14746df46f543ac95d0aa02380267fae5f1de02791eee&', // Replace with actual image URL or asset
     ),
     Place(
-      name: 'Blok M Plaza',
-      category: 'Shopping Area',
-      distance: '~1km',
-      rating: 4.7,
-      review: 'One of the shopping centers in South Jakarta. There is an entrance from the MRT station.',
-      imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984531992576/blokm.png?ex=66a60193&is=66a4b013&hm=4d01a1a601617031a2877bfa566fd2f9bc0d314b06802a575a81b8875232794f&', // Replace with actual image URL or asset
+      name: 'Suasana Kopi',
+      category: 'Cafe',
+      rangePrice: 'IDR 20.000 - 42.000',
+      rating: 4.9,
+      review: 'For coffee drinks, yesterday I tried the Aroma Dia Strong menu, it felt like it had a fragrance, different from other milk coffees.',
+      imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266885224130674749/image_4_1.png?ex=66a6c64f&is=66a574cf&hm=a4dbd088cfad48bdaa967909991fdb680b246774fc17f59f5bf8456957b668ca&', // Replace with actual image URL or asset
     ),
     Place(
-      name: 'Marta Tiahahu Literacy Park',
-      category: 'Nature Places',
-      distance: '~1.2km',
+      name: 'Tuku',
+      category: 'Cafe',
+      rangePrice: 'IDR 15.000 - 34.000',
       rating: 4.7,
-      review: 'Cool place to hangout, eat lots of snacks, relax while reading a book. Sometimes there are music shows too.',
-      imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984796098622/marta.png?ex=66a60193&is=66a4b013&hm=df66617d1b2cd5cb74d772120151cad599d087ad3ca1927c28af3e989bc4628e&', // Replace with actual image URL or asset
+      review: 'I really like Kopi Susu tetangga, the taste is unique and has not changed from the past until now.',
+      imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266885223887671441/image_2_1.png?ex=66a6c64e&is=66a574ce&hm=37e9e4ecb8166d75c529ec8074cb458a7ebae246272b51de9443a014804c0d65&', // Replace with actual image URL or asset
     ),
   ];
 
@@ -120,37 +120,65 @@ class _PromptScreenState extends State<PromptScreen> {
                             color: Colors.black,
                           ),
                         ),
-                        InkWell(
-                          onTap: (){
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => FormPage()),
-                            );
-                          },
-                          child: Container(
-                            alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.only(left: 10,right:50, bottom: 5,top:5), // Adjust padding to fit your design needs
-                            decoration: BoxDecoration(
-                              color: Color(0xFFCAF1DC), // Use the hex color that matches your button background
-                              borderRadius: BorderRadius.circular(30), // Adjust the border radius to get the desired roundness
-                              border: Border.all(
-                                color: Colors.white, // Set the border color
-                                width: 2, // Set the border width
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => FormPage()),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFFCAF1DC), // Background color
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
                               ),
+                              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                             ),
-                            child:IntrinsicWidth(
+                            child: IntrinsicWidth(
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Icon(Icons.add),
-                                  SizedBox(width:5),
+                                  SizedBox(width: 5),
                                   Text("Add New Place"),
-                              
                                 ],
                               ),
-                            )
+                            ),
                           ),
                         )
+                        // InkWell(
+                        //   onTap: (){
+                        //     Navigator.push(
+                        //       context,
+                        //       MaterialPageRoute(builder: (context) => FormPage()),
+                        //     );
+                        //   },
+                        //   child: Container(
+                        //     alignment: Alignment.centerLeft,
+                        //     padding: EdgeInsets.only(left: 10,right:50, bottom: 5,top:5), // Adjust padding to fit your design needs
+                        //     decoration: BoxDecoration(
+                        //       color: Color(0xFFCAF1DC), // Use the hex color that matches your button background
+                        //       borderRadius: BorderRadius.circular(30), // Adjust the border radius to get the desired roundness
+                        //       border: Border.all(
+                        //         color: Colors.white, // Set the border color
+                        //         width: 2, // Set the border width
+                        //       ),
+                        //     ),
+                        //     child:IntrinsicWidth(
+                        //       child: Row(
+                        //         mainAxisAlignment: MainAxisAlignment.start,
+                        //         children: [
+                        //           Icon(Icons.add),
+                        //           SizedBox(width:5),
+                        //           Text("Add New Place"),
+                              
+                        //         ],
+                        //       ),
+                        //     )
+                        //   ),
+                        // )
                       ],
                     ),
                   ),
@@ -245,7 +273,7 @@ class _PromptScreenState extends State<PromptScreen> {
                       ),
                       const SizedBox(height: 5),
                       Text('Category: ${place.category}'),
-                      Text('Estimation distance: ${place.distance}'),
+                      Text('Range price: ${place.rangePrice}'),
                       Row(
                         children: [
                           const Text('Rating: '),
@@ -263,102 +291,113 @@ class _PromptScreenState extends State<PromptScreen> {
                       Text('Review: ${place.review}'),
                     ],
                   ),
-                  Column(
+                  Row(
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white, // Light green background color
-                          borderRadius: BorderRadius.circular(40), // Rounded corners
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 1,
-                              blurRadius: 6,
-                              offset: Offset(0, 3), // Shadow position
-                            ),
-                          ],
-                        ),
-                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                        margin: EdgeInsets.only(bottom: 8), // Add space between the containers
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween, // Align children to the space between
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start, // Align text to the start
-                              children: [
-                                Text(
-                                  "Start from",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                Text(
-                                  "Rp 12.000",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
+                      Image.network(
+                       "https://cdn.discordapp.com/attachments/1264936584277528600/1266882686526554213/image_7.png?ex=66a6c3f2&is=66a57272&hm=d1641797ee3e4f9f88a28b47bc0cb5566a9909db1b0e0acb0f3dfad6e3856fc5&",
+                        width: 50,
+                        height: 60,
+                        fit: BoxFit.cover,
+                      ),
+                      Spacer(),
+                      Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white, // Light green background color
+                              borderRadius: BorderRadius.circular(40), // Rounded corners
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 6,
+                                  offset: Offset(0, 3), // Shadow position
                                 ),
                               ],
                             ),
-                            Image.network(
-                              "https://cdn.discordapp.com/attachments/1264936584277528600/1266691625615364126/Image_4.png?ex=66a61201&is=66a4c081&hm=69b6e32804b129cccda309543050a0199efc377d3f696f90e423c07c9f10c91f&",
-                              width: 40,
-                              height: 30,
-                              fit: BoxFit.cover,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xFFECFFE5), // Light green background color
-                          borderRadius: BorderRadius.circular(40), // Rounded corners
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 1,
-                              blurRadius: 6,
-                              offset: Offset(0, 3), // Shadow position
-                            ),
-                          ],
-                        ),
-                        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween, // Align children to the space between
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start, // Align text to the start
+                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                            margin: EdgeInsets.only(bottom: 8), // Add space between the containers
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween, // Align children to the space between
                               children: [
-                                Text(
-                                  "Start from",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.black,
-                                  ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start, // Align text to the start
+                                  children: [
+                                    Text(
+                                      "Start from",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Rp 12.000",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  "Rp 20.000",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
+                                Image.network(
+                                  "https://cdn.discordapp.com/attachments/1264936584277528600/1266691625615364126/Image_4.png?ex=66a61201&is=66a4c081&hm=69b6e32804b129cccda309543050a0199efc377d3f696f90e423c07c9f10c91f&",
+                                  width: 40,
+                                  height: 30,
+                                  fit: BoxFit.cover,
                                 ),
                               ],
                             ),
-                            Image.network(
-                              "https://cdn.discordapp.com/attachments/1264936584277528600/1266691417590333440/Image_3.png?ex=66a611cf&is=66a4c04f&hm=fdef8354570970f871b11e46a5065a8f7374497fcf1e3b7f5853065c5fc3ce1f&",
-                              width: 40,
-                              height: 30,
-                              fit: BoxFit.cover,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xFFECFFE5), // Light green background color
+                              borderRadius: BorderRadius.circular(40), // Rounded corners
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 6,
+                                  offset: Offset(0, 3), // Shadow position
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween, // Align children to the space between
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start, // Align text to the start
+                                  children: [
+                                    Text(
+                                      "Start from",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Rp 20.000",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Image.network(
+                                  "https://cdn.discordapp.com/attachments/1264936584277528600/1266691417590333440/Image_3.png?ex=66a611cf&is=66a4c04f&hm=fdef8354570970f871b11e46a5065a8f7374497fcf1e3b7f5853065c5fc3ce1f&",
+                                  width: 40,
+                                  height: 30,
+                                  fit: BoxFit.cover,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ]
                       ),
-                    ]
+                    ],
                   )
                   // Row(
                   //   mainAxisAlignment: MainAxisAlignment.end,

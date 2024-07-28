@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:grabbie_fe/Navbar.dart';
 import 'package:grabbie_fe/SurveyScreen2.dart';
 class SurveyScreen extends StatefulWidget {
   @override
