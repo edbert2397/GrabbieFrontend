@@ -25,6 +25,11 @@ class PlacesScreen extends StatefulWidget {
   _PlacesScreenState createState() => _PlacesScreenState();
 }
 
+// M Bloc Space
+// Category: Shopping area
+// Rating: 4.6/5
+// Review: The location is very strategic to reach public transportation. The place is nice and very interesting.
+
 class _PlacesScreenState extends State<PlacesScreen> {
   final List<Place> allPlaces = [
     Place(
@@ -36,11 +41,11 @@ class _PlacesScreenState extends State<PlacesScreen> {
       imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984531992576/blokm.png?ex=66a60193&is=66a4b013&hm=4d01a1a601617031a2877bfa566fd2f9bc0d314b06802a575a81b8875232794f&', // Replace with actual image URL or asset
     ),
     Place(
-      name: 'Blok M Plaza',
+      name: 'M Bloc Space',
       category: 'Shopping Area',
       starting_price: "Rp40.000",
-      rating: 4.7,
-      review: 'One of the shopping centers in South Jakarta. There is an entrance from the MRT station.',
+      rating: 4.6,
+      review: 'The location is very strategic to reach public transportation. The place is nice and very interesting.',
       imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984531992576/blokm.png?ex=66a60193&is=66a4b013&hm=4d01a1a601617031a2877bfa566fd2f9bc0d314b06802a575a81b8875232794f&', // Replace with actual image URL or asset
     ),
     Place(
@@ -49,6 +54,22 @@ class _PlacesScreenState extends State<PlacesScreen> {
       starting_price: "Rp60.000",
       rating: 4.7,
       review: 'Cool place to hangout, eat lots of snacks, relax while reading a book. Sometimes there are music shows too.',
+      imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984796098622/marta.png?ex=66a60193&is=66a4b013&hm=df66617d1b2cd5cb74d772120151cad599d087ad3ca1927c28af3e989bc4628e&', // Replace with actual image URL or asset
+    ),
+    Place(
+      name: 'Lucky Cat Salon',
+      category: 'Salon',
+      starting_price: "Rp50.000",
+      rating: 4.5,
+      review: 'Cool place to hangout, eat lots of snacks, relax while reading a book. Sometimes there are music shows too.',
+      imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984796098622/marta.png?ex=66a60193&is=66a4b013&hm=df66617d1b2cd5cb74d772120151cad599d087ad3ca1927c28af3e989bc4628e&', // Replace with actual image URL or asset
+    ),
+    Place(
+      name: 'Filosofi Kopi',
+      category: 'Cafes and Restaurants',
+      starting_price: "Rp18.000",
+      rating: 4.5,
+      review: 'Favorite coffee is butterscotch coffee. The wifi is quite fast. The fun seat is by the window, you can see the activity outside.',
       imageUrl: 'https://cdn.discordapp.com/attachments/1264936584277528600/1266673984796098622/marta.png?ex=66a60193&is=66a4b013&hm=df66617d1b2cd5cb74d772120151cad599d087ad3ca1927c28af3e989bc4628e&', // Replace with actual image URL or asset
     ),
   ];
